@@ -4,7 +4,7 @@
 export const portfolioData = {
   // Informasi Personal
   personal: {
-    name: "John Doe",
+    name: "Ananda Dwi Laras, S.Kom.",
     role: "Full Stack Developer",
     headline: "I create beautiful, functional web applications with modern technologies. Passionate about clean code and great user experiences.",
     email: "john.doe@example.com",
@@ -184,4 +184,5 @@ I believe in writing clean, maintainable code and creating user experiences that
 // 2. Untuk foto profil, upload ke GitHub repository atau gunakan layanan image hosting
 // 3. Untuk thumbnail project, Anda bisa menggunakan screenshot atau gambar mockup
 // 4. Pastikan semua URL valid dan dapat diakses publik
+
 // 5. Untuk CV, upload ke Google Drive dan ubah sharing setting ke "Anyone with the link"
