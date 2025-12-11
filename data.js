@@ -1,10 +1,10 @@
 // data.js - Portfolio Data Configuration
 // Edit file ini untuk mengubah konten portfolio Anda
 
-export const portfolioData = {
+const portfolioData = {
   // Informasi Personal
   personal: {
-    name: "Ananda Dwi Laras, S.Kom.",
+    name: "John Doe",
     role: "Full Stack Developer",
     headline: "I create beautiful, functional web applications with modern technologies. Passionate about clean code and great user experiences.",
     email: "john.doe@example.com",
@@ -13,7 +13,7 @@ export const portfolioData = {
     
     // URL foto profil (bisa menggunakan link dari GitHub, Imgur, atau platform lain)
     // Kosongkan untuk menggunakan avatar default
-    photo: "https://via.placeholder.com/400x400/1e293b/3b82f6?text=Profile",
+    photo: "",
     
     // URL file CV (bisa link Google Drive, Dropbox, atau file di GitHub)
     cvUrl: "https://drive.google.com/file/d/your-cv-file-id/view",
@@ -96,13 +96,10 @@ I believe in writing clean, maintainable code and creating user experiences that
       description: "A full-featured e-commerce platform with payment integration, inventory management, and admin dashboard. Built with React and Node.js, featuring real-time updates and secure payment processing. Supports multiple payment methods and includes advanced search and filtering capabilities.",
       
       // URL thumbnail project (bisa dari GitHub, Imgur, dll)
-      thumbnail: "https://via.placeholder.com/800x600/1e293b/3b82f6?text=E-Commerce+Platform",
+      thumbnail: "",
       
       // Array gambar tambahan untuk gallery di modal
-      images: [
-        "https://via.placeholder.com/600x400/1e293b/3b82f6?text=Screenshot+1",
-        "https://via.placeholder.com/600x400/1e293b/3b82f6?text=Screenshot+2"
-      ],
+      images: [],
       
       // Technologies used
       technologies: ["React", "Node.js", "MongoDB", "Stripe", "Tailwind CSS"],
@@ -118,11 +115,8 @@ I believe in writing clean, maintainable code and creating user experiences that
       category: "Mobile App",
       year: "2023",
       description: "A productivity app with real-time collaboration and team management features. Includes task assignment, progress tracking, and team chat functionality. Built with React Native for cross-platform compatibility.",
-      thumbnail: "https://via.placeholder.com/800x600/1e293b/3b82f6?text=Task+Management+App",
-      images: [
-        "https://via.placeholder.com/600x400/1e293b/3b82f6?text=App+Screen+1",
-        "https://via.placeholder.com/600x400/1e293b/3b82f6?text=App+Screen+2"
-      ],
+      thumbnail: "",
+      images: [],
       technologies: ["React Native", "Firebase", "Redux", "Expo"],
       demoUrl: "https://your-app-demo.com",
       githubUrl: "https://github.com/yourusername/task-app"
@@ -132,11 +126,8 @@ I believe in writing clean, maintainable code and creating user experiences that
       category: "Design Tool",
       year: "2023",
       description: "A tool to create and manage design systems with live component preview. Helps teams maintain consistent UI/UX across projects. Features include component library, style guide, and code export functionality.",
-      thumbnail: "https://via.placeholder.com/800x600/1e293b/3b82f6?text=Design+System+Builder",
-      images: [
-        "https://via.placeholder.com/600x400/1e293b/3b82f6?text=Tool+Interface+1",
-        "https://via.placeholder.com/600x400/1e293b/3b82f6?text=Tool+Interface+2"
-      ],
+      thumbnail: "",
+      images: [],
       technologies: ["Vue.js", "Tailwind CSS", "TypeScript", "Vite"],
       demoUrl: "https://your-design-tool.com",
       githubUrl: "https://github.com/yourusername/design-system"
@@ -146,7 +137,7 @@ I believe in writing clean, maintainable code and creating user experiences that
       category: "Web App",
       year: "2023",
       description: "A modern weather application with real-time data and 7-day forecasts. Features include location detection, weather alerts, and beautiful animated weather icons.",
-      thumbnail: "https://via.placeholder.com/800x600/1e293b/3b82f6?text=Weather+App",
+      thumbnail: "",
       images: [],
       technologies: ["React", "Weather API", "Chart.js", "CSS3"],
       demoUrl: "https://your-weather-app.com",
@@ -157,10 +148,8 @@ I believe in writing clean, maintainable code and creating user experiences that
       category: "Web App",
       year: "2022",
       description: "A content management system for bloggers with markdown support, SEO optimization, and analytics dashboard. Includes user authentication and role-based access control.",
-      thumbnail: "https://via.placeholder.com/800x600/1e293b/3b82f6?text=Blog+CMS",
-      images: [
-        "https://via.placeholder.com/600x400/1e293b/3b82f6?text=CMS+Dashboard"
-      ],
+      thumbnail: "",
+      images: [],
       technologies: ["Next.js", "PostgreSQL", "Prisma", "NextAuth"],
       demoUrl: "https://your-cms-demo.com",
       githubUrl: "https://github.com/yourusername/blog-cms"
@@ -170,7 +159,7 @@ I believe in writing clean, maintainable code and creating user experiences that
       category: "Mobile App",
       year: "2022",
       description: "A comprehensive fitness tracking application with workout logging, progress charts, and personalized recommendations. Syncs across devices and integrates with popular fitness APIs.",
-      thumbnail: "https://via.placeholder.com/800x600/1e293b/3b82f6?text=Fitness+Tracker",
+      thumbnail: "",
       images: [],
       technologies: ["React Native", "Node.js", "MongoDB", "Health APIs"],
       demoUrl: "https://your-fitness-app.com",
@@ -178,11 +167,3 @@ I believe in writing clean, maintainable code and creating user experiences that
     }
   ]
 };
-
-// Tips untuk menggunakan data.js:
-// 1. Ganti semua informasi dengan data Anda sendiri
-// 2. Untuk foto profil, upload ke GitHub repository atau gunakan layanan image hosting
-// 3. Untuk thumbnail project, Anda bisa menggunakan screenshot atau gambar mockup
-// 4. Pastikan semua URL valid dan dapat diakses publik
-
-// 5. Untuk CV, upload ke Google Drive dan ubah sharing setting ke "Anyone with the link"
