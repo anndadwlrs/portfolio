@@ -1,402 +1,581 @@
 <!doctype html>
-<html lang="en" class="h-full">
+<html lang="id">
  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Professional Portfolio</title>
+  <title>Portfolio Ananda Dwi Laras, S.Kom. </title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body {
-      box-sizing: border-box;
-    }
-    
-    html {
-      scroll-behavior: smooth;
-    }
-    
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    
-    .fade-in-up {
-      animation: fadeInUp 0.8s ease-out forwards;
-    }
-    
-    .fade-in {
-      animation: fadeIn 0.6s ease-out forwards;
-    }
-    
-    ::-webkit-scrollbar {
-      width: 10px;
-    }
-    
-    ::-webkit-scrollbar-track {
-      background: #1e293b;
-    }
-    
-    ::-webkit-scrollbar-thumb {
-      background: #475569;
-      border-radius: 5px;
-    }
-    
-    ::-webkit-scrollbar-thumb:hover {
-      background: #64748b;
-    }
-  </style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+        }
+        
+        .card-shadow {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .skill-badge {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .skill-badge:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .section-card {
+            transition: transform 0.3s ease;
+        }
+        
+        .section-card:hover {
+            transform: translateY(-3px);
+        }
+        
+        .btn-primary {
+            background-color: #4299e1;
+            color: white;
+            padding: 12px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #3182ce;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(66, 153, 225, 0.4);
+        }
+        
+        .btn-secondary {
+            background-color: #2d3748;
+            color: white;
+            padding: 12px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            border: 2px solid #4299e1;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #4299e1;
+            transform: translateY(-2px);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        
+        .modal-content {
+            background-color: #ffffff;
+            margin: 5% auto;
+            padding: 40px;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 85vh;
+            overflow-y: auto;
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .close {
+            color: #718096;
+            float: right;
+            font-size: 40px;
+            font-weight: bold;
+            line-height: 30px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .close:hover {
+            color: #2d3748;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: opacity 0.3s ease;
+        }
+        
+        nav a:hover {
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 768px) {
+            nav .nav-links {
+                display: none;
+                flex-direction: column;
+                gap: 16px;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background-color: #0f172a;
+                padding: 20px;
+            }
+            
+            nav .nav-links.active {
+                display: flex;
+            }
+            
+            .hamburger {
+                display: block;
+                cursor: pointer;
+            }
+        }
+        
+        .hamburger {
+            display: none;
+        }
+    </style>
   <style>@view-transition { navigation: auto; }</style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
   <script src="/_sdk/element_sdk.js" type="text/javascript"></script>
  </head>
- <body class="h-full w-full bg-slate-900 text-slate-100">
-  <div class="w-full h-full overflow-auto"><!-- Navigation -->
-   <nav class="fixed top-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-sm border-b border-slate-800">
-    <div class="max-w-7xl mx-auto px-6 py-4">
-     <div class="flex justify-between items-center"><a href="#home" id="nav-logo" class="text-2xl font-bold text-blue-400">Portfolio</a>
-      <div class="hidden md:flex space-x-8"><a href="#home" class="text-slate-300 hover:text-blue-400 transition-colors">Home</a> <a href="#about" class="text-slate-300 hover:text-blue-400 transition-colors">About</a> <a href="#skills" class="text-slate-300 hover:text-blue-400 transition-colors">Skills</a> <a href="#projects" class="text-slate-300 hover:text-blue-400 transition-colors">Projects</a> <a href="#contact" class="text-slate-300 hover:text-blue-400 transition-colors">Contact</a>
-      </div><button id="mobile-menu-btn" class="md:hidden text-slate-300">
-       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-       </svg></button>
+ <body>
+  <div class="gradient-bg" style="min-height: 100vh;"><!-- Navbar -->
+   <nav style="background-color: #0f172a; border-bottom: 2px solid #4299e1; padding: 16px 24px; position: sticky; top: 0; z-index: 50; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
+     <h1 style="color: white; font-size: 24px; font-weight: bold;">Portfolio</h1>
+     <div class="nav-links" style="display: flex; gap: 24px;"><a href="#beranda">Beranda</a> <a href="#tentang">Tentang</a> <a href="#keahlian">Keahlian</a> <a href="#projects">Projects</a> <a href="#pengalaman">Pengalaman</a> <a href="#kontak">Kontak</a>
+     </div>
+     <div class="hamburger" onclick="toggleMenu()">
+      <div style="width: 25px; height: 3px; background-color: white; margin: 5px 0;"></div>
+      <div style="width: 25px; height: 3px; background-color: white; margin: 5px 0;"></div>
+      <div style="width: 25px; height: 3px; background-color: white; margin: 5px 0;"></div>
      </div>
     </div>
-    <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 border-t border-slate-800"><a href="#home" class="block py-2 text-slate-300">Home</a> <a href="#about" class="block py-2 text-slate-300">About</a> <a href="#skills" class="block py-2 text-slate-300">Skills</a> <a href="#projects" class="block py-2 text-slate-300">Projects</a> <a href="#contact" class="block py-2 text-slate-300">Contact</a>
-    </div>
    </nav><!-- Hero Section -->
-   <section id="home" class="min-h-screen flex items-center justify-center px-6 pt-24 pb-12">
-    <div class="max-w-7xl w-full">
-     <div class="grid md:grid-cols-2 gap-12 items-center">
-      <div class="fade-in-up">
-       <p id="hero-greeting" class="text-lg text-slate-400 mb-2">Hi, I'm</p>
-       <h1 id="hero-name" class="text-5xl md:text-6xl font-bold mb-4 text-white">John Doe</h1>
-       <h2 id="hero-role" class="text-2xl md:text-3xl mb-6 text-blue-400">Full Stack Developer</h2>
-       <p id="hero-description" class="text-lg text-slate-300 mb-8 leading-relaxed">I create beautiful, functional web applications with modern technologies.</p>
-       <div class="flex flex-wrap gap-4 items-center"><a id="hero-cta" href="#" class="px-8 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/50"> Download CV </a>
-        <div id="social-links" class="flex gap-4"></div>
+   <section id="beranda" style="padding: 80px 24px;">
+    <div style="max-width: 1000px; margin: 0 auto; text-align: center;">
+     <div style="width: 228px; height: 228px; margin: 0 auto 24px; background-image: url('https://i.ibb.co.com/xNgtJ4q/IMG-20250919-221014-340.png'); background-size: cover; background-position: center; border-radius: 50%; display: flex; align-items: center; justify-content: center;"></div>
+     <h1 style="color: white; font-size: 48px; font-weight: bold; margin-bottom: 16px;">Ananda Dwi Laras, S.Kom.</h1>
+     <p style="color: #cbd5e0; font-size: 24px; margin-bottom: 24px;">IT Support &amp; Guru TIK</p>
+     <p style="color: #e2e8f0; font-size: 18px; max-width: 800px; margin: 0 auto 32px;">IT Support & Guru TIK (Informatika) dengan latar belakang Ilmu Komputer, terampil dalam dukungan teknis serta pengajaran teknologi informasi.</p>
+     <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;"><a href="#kontak" class="btn-primary">Hubungi Saya</a> <a href="#keahlian" class="btn-secondary">Lihat Keahlian</a>
+     </div>
+    </div>
+   </section><!-- About Section -->
+   <section id="tentang" style="padding: 64px 24px;">
+    <div style="max-width: 1000px; margin: 0 auto;">
+     <div class="card-shadow section-card" style="background-color: white; border-radius: 16px; padding: 32px;">
+      <h2 style="color: #1a202c; font-size: 32px; font-weight: bold; margin-bottom: 24px;">Tentang Saya</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+       <div style="display: flex; gap: 16px;">
+        <div style="font-size: 32px;">
+         🔧
+        </div>
+        <div>
+         <h3 style="color: #2d3748; font-size: 20px; font-weight: 600; margin-bottom: 8px;">IT Support Profesional</h3>
+         <p style="color: #4a5568;">IT Support dengan kemampuan dukungan teknis, instalasi sistem, dan pemeliharaan perangkat IT.</p>
+        </div>
        </div>
-      </div>
-      <div class="fade-in flex justify-center">
-       <div class="relative">
-        <div class="absolute inset-0 bg-blue-500/20 rounded-full blur-3xl"></div>
-        <div id="hero-photo-container" class="relative w-72 h-72 rounded-full overflow-hidden border-4 border-blue-500/50 shadow-2xl">
-         <div class="w-full h-full bg-slate-700 flex items-center justify-center text-8xl">
-          👤
-         </div>
+       <div style="display: flex; gap: 16px;">
+        <div style="font-size: 32px;">
+         📚
+        </div>
+        <div>
+         <h3 style="color: #2d3748; font-size: 20px; font-weight: 600; margin-bottom: 8px;">Guru TIK</h3>
+         <p style="color: #4a5568;">Guru TIK (Informatika) yang berfokus pada pembelajaran teknologi informasi dan literasi digital.</p>
         </div>
        </div>
       </div>
      </div>
     </div>
-   </section><!-- About Section -->
-   <section id="about" class="py-20 px-6 bg-slate-800/50">
-    <div class="max-w-7xl mx-auto">
-     <h2 class="text-4xl font-bold text-center mb-12 text-white">About Me</h2>
-     <div class="max-w-4xl mx-auto">
-      <div id="about-content" class="text-lg text-slate-300 leading-relaxed space-y-4"></div>
+   </section><!-- Skills Section -->
+   <section id="keahlian" style="padding: 64px 24px;">
+    <div style="max-width: 1000px; margin: 0 auto;">
+     <h2 style="color: white; font-size: 32px; font-weight: bold; margin-bottom: 32px; text-align: center;">Keahlian Saya</h2>
+     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px;">
+      <div class="card-shadow section-card" style="background-color: white; border-radius: 12px; padding: 24px;">
+       <h3 style="color: #2d3748; font-size: 20px; font-weight: bold; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;"><span>💻</span> IT Support</h3>
+       <div style="display: flex; flex-wrap: wrap; gap: 8px;"><span class="skill-badge" style="background-color: #ebf8ff; color: #2c5282; padding: 8px 16px; border-radius: 8px; font-size: 14px; font-weight: 600;">Hardware Troubleshooting</span> <span class="skill-badge" style="background-color: #ebf8ff; color: #2c5282; padding: 8px 16px; border-radius: 8px; font-size: 14px; font-weight: 600;">Software Installation</span> <span class="skill-badge" style="background-color: #ebf8ff; color: #2c5282; padding: 8px 16px; border-radius: 8px; font-size: 14px; font-weight: 600;">Network Configuration</span> <span class="skill-badge" style="background-color: #ebf8ff; color: #2c5282; padding: 8px 16px; border-radius: 8px; font-size: 14px; font-weight: 600;">Operating System Windows</span>
+       </div>
+      </div>
+      <div class="card-shadow section-card" style="background-color: white; border-radius: 12px; padding: 24px;">
+       <h3 style="color: #2d3748; font-size: 20px; font-weight: bold; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;"><span>🎓</span> Pengajaran TIK</h3>
+       <div style="display: flex; flex-wrap: wrap; gap: 8px;"><span class="skill-badge" style="background-color: #ebf8ff; color: #2c5282; padding: 8px 16px; border-radius: 8px; font-size: 14px; font-weight: 600;">Microsoft Office</span> <span class="skill-badge" style="background-color: #ebf8ff; color: #2c5282; padding: 8px 16px; border-radius: 8px; font-size: 14px; font-weight: 600;">Scratch Programming</span> <span class="skill-badge" style="background-color: #ebf8ff; color: #2c5282; padding: 8px 16px; border-radius: 8px; font-size: 14px; font-weight: 600;">Digital Literacy</span> <span class="skill-badge" style="background-color: #ebf8ff; color: #2c5282; padding: 8px 16px; border-radius: 8px; font-size: 14px; font-weight: 600;">Internet Safety</span> <span class="skill-badge" style="background-color: #ebf8ff; color: #2c5282; padding: 8px 16px; border-radius: 8px; font-size: 14px; font-weight: 600;">Basic HTML/CSS</span>
+       </div>
+      </div>
      </div>
     </div>
-   </section><!-- Skills Section -->
-   <section id="skills" class="py-20 px-6">
-    <div class="max-w-7xl mx-auto">
-     <h2 class="text-4xl font-bold text-center mb-12 text-white">Skills</h2>
-     <div id="skills-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
-    </div>
    </section><!-- Projects Section -->
-   <section id="projects" class="py-20 px-6 bg-slate-800/50">
-    <div class="max-w-7xl mx-auto">
-     <h2 class="text-4xl font-bold text-center mb-12 text-white">Projects</h2>
-     <div id="projects-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+   <section id="projects" style="padding: 64px 24px;">
+    <div style="max-width: 1400px; margin: 0 auto;">
+     <h2 style="color: white; font-size: 32px; font-weight: bold; margin-bottom: 32px; text-align: center;">Projects</h2>
+     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;"><!-- Project 1 -->
+      <div class="card-shadow section-card" style="background-color: white; border-radius: 12px; overflow: hidden;">
+       <div style="padding: 24px;">
+        <div style="font-size: 40px; margin-bottom: 16px;">
+         💻
+        </div>
+        <h3 style="color: #2d3748; font-size: 20px; font-weight: bold; margin-bottom: 12px;">Sistem Manajemen Lab Komputer</h3>
+        <p style="color: #4a5568; margin-bottom: 16px;">Aplikasi web untuk mengelola jadwal penggunaan lab komputer sekolah, monitoring perangkat, dan laporan kerusakan.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px;"><span style="background-color: #ebf8ff; color: #2c5282; padding: 4px 12px; border-radius: 4px; font-size: 12px; font-weight: 600;">HTML/CSS</span> <span style="background-color: #ebf8ff; color: #2c5282; padding: 4px 12px; border-radius: 4px; font-size: 12px; font-weight: 600;">JavaScript</span> <span style="background-color: #ebf8ff; color: #2c5282; padding: 4px 12px; border-radius: 4px; font-size: 12px; font-weight: 600;">PHP</span>
+        </div><button onclick="showProject(1)" style="width: 100%; background-color: #4299e1; color: white; padding: 10px 16px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;"> Lihat Detail </button>
+       </div>
+      </div><!-- Project 2 -->
+      <div class="card-shadow section-card" style="background-color: white; border-radius: 12px; overflow: hidden;">
+       <div style="padding: 24px;">
+        <div style="font-size: 40px; margin-bottom: 16px;">
+         📱
+        </div>
+        <h3 style="color: #2d3748; font-size: 20px; font-weight: bold; margin-bottom: 12px;">E-Learning TIK</h3>
+        <p style="color: #4a5568; margin-bottom: 16px;">Platform pembelajaran online untuk materi TIK dengan video tutorial, quiz interaktif, dan monitoring progress siswa.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px;"><span style="background-color: #ebf8ff; color: #2c5282; padding: 4px 12px; border-radius: 4px; font-size: 12px; font-weight: 600;">Moodle</span> <span style="background-color: #ebf8ff; color: #2c5282; padding: 4px 12px; border-radius: 4px; font-size: 12px; font-weight: 600;">Google Classroom</span>
+        </div><button onclick="showProject(2)" style="width: 100%; background-color: #4299e1; color: white; padding: 10px 16px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;"> Lihat Detail </button>
+       </div>
+      </div><!-- Project 3 -->
+      <div class="card-shadow section-card" style="background-color: white; border-radius: 12px; overflow: hidden;">
+       <div style="padding: 24px;">
+        <div style="font-size: 40px; margin-bottom: 16px;">
+         🎮
+        </div>
+        <h3 style="color: #2d3748; font-size: 20px; font-weight: bold; margin-bottom: 12px;">Game Edukasi Scratch</h3>
+        <p style="color: #4a5568; margin-bottom: 16px;">Koleksi game edukasi yang dibuat menggunakan Scratch untuk mengajarkan konsep pemrograman kepada siswa SMP.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px;"><span style="background-color: #ebf8ff; color: #2c5282; padding: 4px 12px; border-radius: 4px; font-size: 12px; font-weight: 600;">Scratch</span> <span style="background-color: #ebf8ff; color: #2c5282; padding: 4px 12px; border-radius: 4px; font-size: 12px; font-weight: 600;">Game Design</span>
+        </div><button onclick="showProject(3)" style="width: 100%; background-color: #4299e1; color: white; padding: 10px 16px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;"> Lihat Detail </button>
+       </div>
+      </div><!-- Project 4 -->
+      <div class="card-shadow section-card" style="background-color: white; border-radius: 12px; overflow: hidden;">
+       <div style="padding: 24px;">
+        <div style="font-size: 40px; margin-bottom: 16px;">
+         🌐
+        </div>
+        <h3 style="color: #2d3748; font-size: 20px; font-weight: bold; margin-bottom: 12px;">Website Sekolah</h3>
+        <p style="color: #4a5568; margin-bottom: 16px;">Redesign dan maintenance website sekolah dengan fitur berita, galeri, dan informasi akademik yang responsif.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px;"><span style="background-color: #ebf8ff; color: #2c5282; padding: 4px 12px; border-radius: 4px; font-size: 12px; font-weight: 600;">WordPress</span> <span style="background-color: #ebf8ff; color: #2c5282; padding: 4px 12px; border-radius: 4px; font-size: 12px; font-weight: 600;">SEO</span>
+        </div><button onclick="showProject(4)" style="width: 100%; background-color: #4299e1; color: white; padding: 10px 16px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;"> Lihat Detail </button>
+       </div>
+      </div><!-- Project 5 -->
+      <div class="card-shadow section-card" style="background-color: white; border-radius: 12px; overflow: hidden;">
+       <div style="padding: 24px;">
+        <div style="font-size: 40px; margin-bottom: 16px;">
+         🔧
+        </div>
+        <h3 style="color: #2d3748; font-size: 20px; font-weight: bold; margin-bottom: 12px;">Sistem Ticketing IT Support</h3>
+        <p style="color: #4a5568; margin-bottom: 16px;">Aplikasi ticketing untuk mengelola permintaan bantuan IT dari staff dan siswa dengan tracking status real-time.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px;"><span style="background-color: #ebf8ff; color: #2c5282; padding: 4px 12px; border-radius: 4px; font-size: 12px; font-weight: 600;">Web App</span> <span style="background-color: #ebf8ff; color: #2c5282; padding: 4px 12px; border-radius: 4px; font-size: 12px; font-weight: 600;">Database</span>
+        </div><button onclick="showProject(5)" style="width: 100%; background-color: #4299e1; color: white; padding: 10px 16px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;"> Lihat Detail </button>
+       </div>
+      </div><!-- Project 6 -->
+      <div class="card-shadow section-card" style="background-color: white; border-radius: 12px; overflow: hidden;">
+       <div style="padding: 24px;">
+        <div style="font-size: 40px; margin-bottom: 16px;">
+         📊
+        </div>
+        <h3 style="color: #2d3748; font-size: 20px; font-weight: bold; margin-bottom: 12px;">Dashboard Monitoring Network</h3>
+        <p style="color: #4a5568; margin-bottom: 16px;">Dashboard untuk monitoring status jaringan sekolah, bandwidth usage, dan alert notifikasi untuk masalah koneksi.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px;"><span style="background-color: #ebf8ff; color: #2c5282; padding: 4px 12px; border-radius: 4px; font-size: 12px; font-weight: 600;">Networking</span> <span style="background-color: #ebf8ff; color: #2c5282; padding: 4px 12px; border-radius: 4px; font-size: 12px; font-weight: 600;">Monitoring</span>
+        </div><button onclick="showProject(6)" style="width: 100%; background-color: #4299e1; color: white; padding: 10px 16px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;"> Lihat Detail </button>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Experience Section -->
+   <section id="pengalaman" style="padding: 64px 24px;">
+    <div style="max-width: 1000px; margin: 0 auto;">
+     <h2 style="color: white; font-size: 32px; font-weight: bold; margin-bottom: 32px; text-align: center;">Pengalaman</h2>
+     <div style="display: flex; flex-direction: column; gap: 24px;">
+      <div class="card-shadow section-card" style="background-color: white; border-radius: 12px; padding: 24px;">
+       <div style="display: flex; gap: 16px;">
+        <div style="font-size: 32px;">
+         🖥️
+        </div>
+        <div style="flex: 1;">
+         <h3 style="color: #2d3748; font-size: 20px; font-weight: bold; margin-bottom: 8px;">IT Support Specialist</h3>
+         <p style="color: #4299e1; font-weight: 600; margin-bottom: 8px;">PT Prima Multi Cipta</p>
+         <p style="color: #718096; font-size: 14px; margin-bottom: 12px;">2021 - 2023</p>
+         <ul style="color: #4a5568; list-style: disc; margin-left: 20px; display: flex; flex-direction: column; gap: 4px;">
+          <li>Maintenance komputer dan perangkat IT</li>
+          <li>Setup dan troubleshooting jaringan</li>
+          <li>Memberikan support teknis untuk Client</li>
+         </ul>
+        </div>
+       </div>
+      </div>
+      <div class="card-shadow section-card" style="background-color: white; border-radius: 12px; padding: 24px;">
+       <div style="display: flex; gap: 16px;">
+        <div style="font-size: 32px;">
+         🖥️
+        </div>
+        <div style="flex: 1;">
+         <h3 style="color: #2d3748; font-size: 20px; font-weight: bold; margin-bottom: 8px;">IT Support (Freelance)</h3>
+         <p style="color: #4299e1; font-weight: 600; margin-bottom: 8px;">CV. Putra Sinar Abadi</p>
+         <p style="color: #718096; font-size: 14px; margin-bottom: 12px;">2023 - Sekarang</p>
+         <ul style="color: #4a5568; list-style: disc; margin-left: 20px; display: flex; flex-direction: column; gap: 4px;">
+          <li>Maintenance komputer dan perangkat IT</li>
+          <li>Setup dan troubleshooting jaringan</li>
+          <li>Memberikan support teknis untuk Client</li>
+         </ul>
+        </div>
+       </div>
+      </div>
+      <div class="card-shadow section-card" style="background-color: white; border-radius: 12px; padding: 24px;">
+       <div style="display: flex; gap: 16px;">
+        <div style="font-size: 32px;">
+         🏫
+        </div>
+        <div style="flex: 1;">
+         <h3 style="color: #2d3748; font-size: 20px; font-weight: bold; margin-bottom: 8px;">Guru TIK</h3>
+         <p style="color: #4299e1; font-weight: 600; margin-bottom: 8px;">SMP IT Ar Rohmaniyah</p>
+         <p style="color: #718096; font-size: 14px; margin-bottom: 12px;">2025 - Sekarang</p>
+         <ul style="color: #4a5568; list-style: disc; margin-left: 20px; display: flex; flex-direction: column; gap: 4px;">
+          <li>Mengajar dan Membimbing Peserta Didik</li>
+          <li>Menyusun Perangkat Pembelajaran</li>
+          <li>Mengelola Pembelajaran Berbasis TIK</li>
+         </ul>
+        </div>
+       </div>
+      </div>
+     </div>
     </div>
    </section><!-- Contact Section -->
-   <section id="contact" class="py-20 px-6">
-    <div class="max-w-7xl mx-auto">
-     <h2 class="text-4xl font-bold text-center mb-12 text-white">Get In Touch</h2>
-     <div class="max-w-2xl mx-auto">
-      <div id="contact-info" class="space-y-6 mb-8"></div>
-      <form id="contact-form" class="space-y-6">
-       <div><label for="contact-name" class="block text-sm font-semibold mb-2 text-white">Name</label> <input type="text" id="contact-name" required class="w-full px-4 py-3 bg-slate-800 text-white rounded-lg border-2 border-slate-700 focus:border-blue-500 focus:outline-none transition-colors">
-       </div>
-       <div><label for="contact-email" class="block text-sm font-semibold mb-2 text-white">Email</label> <input type="email" id="contact-email" required class="w-full px-4 py-3 bg-slate-800 text-white rounded-lg border-2 border-slate-700 focus:border-blue-500 focus:outline-none transition-colors">
-       </div>
-       <div><label for="contact-message" class="block text-sm font-semibold mb-2 text-white">Message</label> <textarea id="contact-message" required rows="5" class="w-full px-4 py-3 bg-slate-800 text-white rounded-lg border-2 border-slate-700 focus:border-blue-500 focus:outline-none transition-colors resize-none"></textarea>
-       </div><button type="submit" class="w-full py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/50"> Send Message </button>
-      </form>
+   <section id="kontak" style="padding: 64px 24px;">
+    <div style="max-width: 1000px; margin: 0 auto;">
+     <div class="card-shadow" style="background-color: white; border-radius: 16px; padding: 32px;">
+      <h2 style="color: #1a202c; font-size: 32px; font-weight: bold; margin-bottom: 24px; text-align: center;">Hubungi Saya</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; max-width: 800px; margin: 0 auto;"><a href="mailto:anndadwlrs@gmail.com" style="text-decoration: none;">
+        <div style="display: flex; align-items: center; gap: 16px; padding: 16px; background-color: #ebf8ff; border-radius: 8px; transition: all 0.3s ease;"><span style="font-size: 32px;">📧</span>
+         <div>
+          <p style="color: #2d3748; font-size: 14px; font-weight: 600; margin-bottom: 4px;">Email</p>
+         </div>
+        </div></a> <a href="https://wa.me/62818150198?text=Halo%20saya%20ingin%20bertanya" style="text-decoration: none;">
+        <div style="display: flex; align-items: center; gap: 16px; padding: 16px; background-color: #ebf8ff; border-radius: 8px; transition: all 0.3s ease;"><span style="font-size: 32px;">📲</span>
+         <div>
+          <p style="color: #2d3748; font-size: 14px; font-weight: 600; margin-bottom: 4px;">Telepon</p>
+         </div>
+        </div></a>
+      </div>
      </div>
     </div>
    </section><!-- Footer -->
-   <footer class="py-8 px-6 text-center border-t border-slate-800 bg-slate-800/50">
-    <p id="footer-text" class="text-slate-400">© 2024 Portfolio. All rights reserved.</p>
-   </footer><!-- Project Modal -->
-   <div id="project-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-6 bg-slate-900/90 backdrop-blur-sm">
-    <div class="max-w-4xl w-full max-h-screen overflow-y-auto bg-slate-800 rounded-2xl shadow-2xl p-8 relative"><button id="modal-close" class="absolute top-4 right-4 w-10 h-10 bg-slate-700 hover:bg-slate-600 rounded-full flex items-center justify-center transition-colors">
-      <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-      </svg></button>
-     <div id="modal-content"></div>
-    </div>
+   <footer style="background-color: #1a202c; padding: 32px 24px; text-align: center;">
+    <p style="color: #cbd5e0;">© 2024 Portfolio IT Support &amp; Guru TIK. Dibuat dengan ❤️</p>
+   </footer>
+  </div><!-- Modal for Project Details -->
+  <div id="projectModal" class="modal">
+   <div class="modal-content"><span class="close" onclick="closeModal()">×</span>
+    <div id="modalBody"></div>
    </div>
   </div>
   <script>
-    // ============================================
-    // EDIT DATA DI SINI - GANTI DENGAN DATA ANDA
-    // ============================================
-    const portfolioData = {
-      personal: {
-        name: "John Doe",
-        role: "Full Stack Developer",
-        headline: "I create beautiful, functional web applications with modern technologies. Passionate about clean code and great user experiences.",
-        email: "john.doe@example.com",
-        phone: "+1 234 567 890",
-        location: "San Francisco, CA",
-        photo: "",
-        cvUrl: "#",
-        social: [
-          { platform: "github", url: "https://github.com/yourusername" },
-          { platform: "linkedin", url: "https://linkedin.com/in/yourusername" }
-        ]
-      },
-      about: "I'm a passionate full-stack developer with 5+ years of experience building web applications. I love turning complex problems into simple, beautiful, and intuitive designs.\n\nWhen I'm not coding, you'll find me exploring new technologies, contributing to open-source projects, or sharing my knowledge through technical writing and mentoring.",
-      skills: [
-        { name: "JavaScript", level: 90 },
-        { name: "React", level: 85 },
-        { name: "Node.js", level: 80 },
-        { name: "Python", level: 75 },
-        { name: "CSS/Tailwind", level: 88 },
-        { name: "MongoDB", level: 82 }
-      ],
-      projects: [
-        {
-          title: "E-Commerce Platform",
-          category: "Web App",
-          year: "2024",
-          description: "A full-featured e-commerce platform with payment integration and admin dashboard.",
-          thumbnail: "",
-          images: [],
-          technologies: ["React", "Node.js", "MongoDB"],
-          demoUrl: "#",
-          githubUrl: "#"
-        },
-        {
-          title: "Task Management App",
-          category: "Mobile App",
-          year: "2023",
-          description: "A productivity app with real-time collaboration features.",
-          thumbnail: "",
-          images: [],
-          technologies: ["React Native", "Firebase"],
-          demoUrl: "#",
-          githubUrl: "#"
-        },
-        {
-          title: "Design System Builder",
-          category: "Design Tool",
-          year: "2023",
-          description: "A tool to create and manage design systems.",
-          thumbnail: "",
-          images: [],
-          technologies: ["Vue.js", "Tailwind"],
-          demoUrl: "#",
-          githubUrl: "#"
+        const projectData = {
+            1: {
+                icon: "💻",
+                title: "Sistem Manajemen Lab Komputer",
+                description: "Aplikasi web komprehensif untuk mengelola seluruh operasional laboratorium komputer sekolah.",
+                duration: "6 Bulan (Januari - Juni 2023)",
+                role: "Full Stack Developer & IT Support",
+                features: [
+                    "Sistem booking jadwal penggunaan lab komputer",
+                    "Monitoring status perangkat secara real-time",
+                    "Laporan kerusakan dan maintenance tracking",
+                    "Dashboard statistik penggunaan lab",
+                    "Notifikasi otomatis untuk staff IT",
+                    "Export laporan dalam format PDF dan Excel"
+                ],
+                technologies: ["HTML/CSS", "JavaScript", "PHP", "MySQL", "Bootstrap", "jQuery"],
+                challenges: "Integrasi sistem dengan database existing sekolah dan memastikan user interface yang mudah digunakan untuk staff non-teknis.",
+                results: "Meningkatkan efisiensi pengelolaan lab hingga 60% dan mengurangi waktu downtime perangkat sebesar 40%."
+            },
+            2: {
+                icon: "📱",
+                title: "E-Learning TIK",
+                description: "Platform pembelajaran online interaktif yang dirancang khusus untuk mata pelajaran TIK tingkat SMP.",
+                duration: "4 Bulan (Agustus - November 2022)",
+                role: "Instructional Designer & Platform Administrator",
+                features: [
+                    "Video tutorial interaktif untuk setiap materi",
+                    "Quiz dan latihan dengan auto-grading",
+                    "Forum diskusi untuk kolaborasi siswa",
+                    "Progress tracking untuk setiap siswa",
+                    "Materi pembelajaran multimedia (video, gambar, dokumen)",
+                    "Mobile-responsive design untuk akses via smartphone"
+                ],
+                technologies: ["Moodle", "Google Classroom", "H5P", "YouTube Integration", "Google Forms"],
+                challenges: "Memastikan engagement siswa dalam pembelajaran online dan mengakomodasi siswa dengan koneksi internet terbatas.",
+                results: "90% siswa aktif menggunakan platform dengan rata-rata peningkatan nilai sebesar 25% dibanding metode konvensional."
+            },
+            3: {
+                icon: "🎮",
+                title: "Game Edukasi Scratch",
+                description: "Koleksi game interaktif untuk mengajarkan konsep pemrograman dasar kepada siswa SMP dengan cara yang menyenangkan.",
+                duration: "3 Bulan (Maret - Mei 2023)",
+                role: "Game Designer & Programming Instructor",
+                features: [
+                    "10+ game edukasi dengan berbagai tingkat kesulitan",
+                    "Tutorial step-by-step untuk membuat game sendiri",
+                    "Konsep programming: loops, conditionals, variables",
+                    "Sistem reward dan achievement untuk motivasi",
+                    "Galeri untuk sharing project siswa",
+                    "Dokumentasi lengkap dalam Bahasa Indonesia"
+                ],
+                technologies: ["Scratch 3.0", "Game Design Principles", "Educational Psychology"],
+                challenges: "Menyeimbangkan aspek fun gaming dengan pembelajaran konsep programming yang efektif.",
+                results: "85% siswa berhasil membuat game sendiri dan memahami konsep dasar pemrograman dalam 1 semester."
+            },
+            4: {
+                icon: "🌐",
+                title: "Website Sekolah",
+                description: "Redesign dan pengembangan website resmi sekolah dengan fokus pada user experience dan SEO optimization.",
+                duration: "5 Bulan (Juli - November 2022)",
+                role: "Web Developer & SEO Specialist",
+                features: [
+                    "Design modern dan responsif untuk semua device",
+                    "Sistem manajemen berita dan pengumuman",
+                    "Galeri foto dan video kegiatan sekolah",
+                    "Informasi akademik dan kalender pendidikan",
+                    "Portal pendaftaran siswa baru online",
+                    "Integrasi dengan social media sekolah"
+                ],
+                technologies: ["WordPress", "Elementor", "Yoast SEO", "WooCommerce", "Custom PHP"],
+                challenges: "Migrasi konten dari website lama dan melatih staff untuk mengelola konten secara mandiri.",
+                results: "Traffic website meningkat 200%, ranking Google page 1 untuk keyword utama, dan mengurangi workload admin sebesar 50%."
+            },
+            5: {
+                icon: "🔧",
+                title: "Sistem Ticketing IT Support",
+                description: "Aplikasi ticketing untuk mengelola dan tracking semua permintaan bantuan IT di lingkungan sekolah.",
+                duration: "4 Bulan (Februari - Mei 2023)",
+                role: "System Analyst & Backend Developer",
+                features: [
+                    "Submit ticket via web dan email",
+                    "Sistem prioritas (Low, Medium, High, Critical)",
+                    "Real-time status tracking untuk user",
+                    "Assignment otomatis ke teknisi available",
+                    "Knowledge base untuk solusi umum",
+                    "Reporting dan analytics dashboard",
+                    "Email notification untuk update status"
+                ],
+                technologies: ["PHP Laravel", "MySQL", "Bootstrap", "Chart.js", "Email Integration"],
+                challenges: "Mengintegrasikan dengan workflow existing dan memastikan response time yang cepat untuk issue critical.",
+                results: "Response time menurun 70%, resolusi issue meningkat 50%, dan dokumentasi masalah lebih terorganisir."
+            },
+            6: {
+                icon: "📊",
+                title: "Dashboard Monitoring Network",
+                description: "Dashboard real-time untuk monitoring kesehatan jaringan sekolah dan bandwidth usage.",
+                duration: "3 Bulan (September - November 2023)",
+                role: "Network Administrator & Data Visualization Developer",
+                features: [
+                    "Real-time monitoring semua device di network",
+                    "Bandwidth usage per lokasi dan device",
+                    "Alert notifikasi untuk masalah koneksi",
+                    "Historical data dan trend analysis",
+                    "Heatmap penggunaan bandwidth per waktu",
+                    "Mobile app untuk monitoring remote",
+                    "Auto-restart untuk device bermasalah"
+                ],
+                technologies: ["Grafana", "InfluxDB", "Telegraf", "SNMP", "Python Scripts", "Docker"],
+                challenges: "Monitoring 50+ device secara simultan dan mendeteksi anomali sebelum menjadi masalah besar.",
+                results: "Downtime berkurang 80%, deteksi masalah lebih cepat 90%, dan perencanaan upgrade network lebih data-driven."
+            }
+        };
+
+        function showProject(id) {
+            const project = projectData[id];
+            const modalBody = document.getElementById('modalBody');
+            
+            modalBody.innerHTML = `
+                <div style="font-size: 48px; margin-bottom: 16px;">${project.icon}</div>
+                <h2 style="color: #2d3748; font-size: 28px; font-weight: bold; margin-bottom: 16px;">${project.title}</h2>
+                
+                <p style="color: #4a5568; font-size: 16px; margin-bottom: 24px;">${project.description}</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px;">
+                    <div>
+                        <h4 style="color: #2d3748; font-weight: bold; margin-bottom: 8px;">⏱️ Durasi Project</h4>
+                        <p style="color: #4a5568;">${project.duration}</p>
+                    </div>
+                    <div>
+                        <h4 style="color: #2d3748; font-weight: bold; margin-bottom: 8px;">👤 Peran</h4>
+                        <p style="color: #4a5568;">${project.role}</p>
+                    </div>
+                </div>
+                
+                <div style="margin-bottom: 24px;">
+                    <h4 style="color: #2d3748; font-weight: bold; margin-bottom: 12px;">✨ Fitur Utama</h4>
+                    <ul style="color: #4a5568; list-style: disc; margin-left: 20px; display: flex; flex-direction: column; gap: 8px;">
+                        ${project.features.map(f => `<li>${f}</li>`).join('')}
+                    </ul>
+                </div>
+                
+                <div style="margin-bottom: 24px;">
+                    <h4 style="color: #2d3748; font-weight: bold; margin-bottom: 12px;">🛠️ Teknologi yang Digunakan</h4>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                        ${project.technologies.map(t => `<span style="background-color: #ebf8ff; color: #2c5282; padding: 6px 12px; border-radius: 4px; font-size: 14px; font-weight: 600;">${t}</span>`).join('')}
+                    </div>
+                </div>
+                
+                <div style="margin-bottom: 24px;">
+                    <h4 style="color: #2d3748; font-weight: bold; margin-bottom: 8px;">🎯 Tantangan</h4>
+                    <p style="color: #4a5568;">${project.challenges}</p>
+                </div>
+                
+                <div>
+                    <h4 style="color: #2d3748; font-weight: bold; margin-bottom: 8px;">📈 Hasil & Dampak</h4>
+                    <p style="color: #4a5568;">${project.results}</p>
+                </div>
+            `;
+            
+            document.getElementById('projectModal').style.display = 'block';
         }
-      ]
-    };
 
-    // Helper functions
-    function getSocialIcon(platform) {
-      const icons = {
-        github: '<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>',
-        linkedin: '<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>',
-        twitter: '<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>'
-      };
-      return icons[platform.toLowerCase()] || icons.github;
-    }
-
-    // Initialize portfolio
-    document.addEventListener('DOMContentLoaded', function() {
-      console.log('Portfolio loading...', portfolioData);
-      
-      // Hero
-      document.getElementById('nav-logo').textContent = portfolioData.personal.name;
-      document.getElementById('hero-name').textContent = portfolioData.personal.name;
-      document.getElementById('hero-role').textContent = portfolioData.personal.role;
-      document.getElementById('hero-description').textContent = portfolioData.personal.headline;
-      document.getElementById('hero-cta').href = portfolioData.personal.cvUrl || '#';
-
-      if (portfolioData.personal.photo) {
-        document.getElementById('hero-photo-container').innerHTML = `<img src="${portfolioData.personal.photo}" alt="${portfolioData.personal.name}" class="w-full h-full object-cover">`;
-      }
-
-      // Social links
-      const socialLinks = document.getElementById('social-links');
-      portfolioData.personal.social.forEach(social => {
-        const link = document.createElement('a');
-        link.href = social.url;
-        link.target = '_blank';
-        link.rel = 'noopener noreferrer';
-        link.className = 'w-10 h-10 bg-slate-800 hover:bg-slate-700 rounded-full flex items-center justify-center transition-colors';
-        link.innerHTML = getSocialIcon(social.platform);
-        socialLinks.appendChild(link);
-      });
-
-      // About
-      const aboutContent = document.getElementById('about-content');
-      portfolioData.about.split('\n\n').forEach(paragraph => {
-        if (paragraph.trim()) {
-          const p = document.createElement('p');
-          p.textContent = paragraph;
-          aboutContent.appendChild(p);
+        function closeModal() {
+            document.getElementById('projectModal').style.display = 'none';
         }
-      });
 
-      // Skills
-      const skillsGrid = document.getElementById('skills-grid');
-      portfolioData.skills.forEach(skill => {
-        const skillCard = document.createElement('div');
-        skillCard.className = 'bg-slate-800 p-6 rounded-xl shadow-lg hover:shadow-blue-500/20 transition-shadow';
-        skillCard.innerHTML = `
-          <div class="flex justify-between items-center mb-3">
-            <h3 class="text-xl font-semibold text-white">${skill.name}</h3>
-            <span class="text-sm font-bold text-blue-400">${skill.level}%</span>
-          </div>
-          <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
-            <div class="h-full bg-blue-500 rounded-full transition-all duration-1000" style="width: ${skill.level}%"></div>
-          </div>
-        `;
-        skillsGrid.appendChild(skillCard);
-      });
-
-      // Projects
-      const projectsGrid = document.getElementById('projects-grid');
-      portfolioData.projects.forEach((project, index) => {
-        const projectCard = document.createElement('div');
-        projectCard.className = 'bg-slate-800 rounded-xl overflow-hidden shadow-lg hover:shadow-blue-500/20 transition-all hover:transform hover:-translate-y-2 duration-300';
-        projectCard.innerHTML = `
-          <div class="h-48 bg-slate-700 flex items-center justify-center text-6xl">📁</div>
-          <div class="p-6">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-xs font-semibold">${project.category}</span>
-              <span class="text-sm text-slate-400">${project.year}</span>
-            </div>
-            <h3 class="text-xl font-bold mb-2 text-white">${project.title}</h3>
-            <p class="text-slate-300 mb-4">${project.description}</p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              ${project.technologies.map(tech => `<span class="px-2 py-1 bg-slate-700 text-slate-300 rounded text-xs">${tech}</span>`).join('')}
-            </div>
-            <button class="w-full py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg font-semibold transition-colors view-details" data-index="${index}">
-              View Details
-            </button>
-          </div>
-        `;
-        projectsGrid.appendChild(projectCard);
-      });
-
-      // Contact
-      const contactInfo = document.getElementById('contact-info');
-      [
-        { label: 'Email', value: portfolioData.personal.email, icon: '✉️' },
-        { label: 'Phone', value: portfolioData.personal.phone, icon: '📱' },
-        { label: 'Location', value: portfolioData.personal.location, icon: '📍' }
-      ].forEach(item => {
-        const div = document.createElement('div');
-        div.className = 'flex items-center gap-4 bg-slate-800 p-4 rounded-lg';
-        div.innerHTML = `
-          <span class="text-2xl">${item.icon}</span>
-          <div>
-            <p class="text-sm text-slate-400">${item.label}</p>
-            <p class="font-semibold text-white">${item.value}</p>
-          </div>
-        `;
-        contactInfo.appendChild(div);
-      });
-
-      // Footer
-      document.getElementById('footer-text').textContent = `© ${new Date().getFullYear()} ${portfolioData.personal.name}. All rights reserved.`;
-
-      // Modal
-      const modal = document.getElementById('project-modal');
-      const modalContent = document.getElementById('modal-content');
-      
-      projectsGrid.addEventListener('click', function(e) {
-        const btn = e.target.closest('.view-details');
-        if (btn) {
-          const project = portfolioData.projects[parseInt(btn.dataset.index)];
-          modalContent.innerHTML = `
-            <h2 class="text-3xl font-bold mb-4 text-white pr-12">${project.title}</h2>
-            <div class="flex items-center gap-2 mb-6">
-              <span class="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-sm font-semibold">${project.category}</span>
-              <span class="text-slate-400">${project.year}</span>
-            </div>
-            <div class="mb-6">
-              <h3 class="text-xl font-semibold mb-2 text-white">Description</h3>
-              <p class="text-slate-300 leading-relaxed">${project.description}</p>
-            </div>
-            <div class="mb-6">
-              <h3 class="text-xl font-semibold mb-3 text-white">Technologies</h3>
-              <div class="flex flex-wrap gap-2">
-                ${project.technologies.map(tech => `<span class="px-3 py-1 bg-slate-700 text-slate-300 rounded-lg">${tech}</span>`).join('')}
-              </div>
-            </div>
-            <div class="flex gap-4">
-              <a href="${project.demoUrl}" target="_blank" rel="noopener noreferrer" class="flex-1 py-3 text-center bg-blue-500 hover:bg-blue-600 text-white rounded-lg font-semibold transition-colors">Live Demo</a>
-              <a href="${project.githubUrl}" target="_blank" rel="noopener noreferrer" class="flex-1 py-3 text-center bg-slate-700 hover:bg-slate-600 text-white rounded-lg font-semibold transition-colors">GitHub</a>
-            </div>
-          `;
-          modal.classList.remove('hidden');
-          modal.classList.add('flex');
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
         }
-      });
 
-      document.getElementById('modal-close').addEventListener('click', () => {
-        modal.classList.add('hidden');
-        modal.classList.remove('flex');
-      });
-
-      modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-          modal.classList.add('hidden');
-          modal.classList.remove('flex');
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('projectModal');
+            if (event.target == modal) {
+                closeModal();
+            }
         }
-      });
-
-      // Mobile menu
-      document.getElementById('mobile-menu-btn').addEventListener('click', () => {
-        document.getElementById('mobile-menu').classList.toggle('hidden');
-      });
-
-      document.querySelectorAll('#mobile-menu a').forEach(link => {
-        link.addEventListener('click', () => {
-          document.getElementById('mobile-menu').classList.add('hidden');
-        });
-      });
-
-      // Contact form
-      document.getElementById('contact-form').addEventListener('submit', (e) => {
-        e.preventDefault();
-        const name = document.getElementById('contact-name').value;
-        const email = document.getElementById('contact-email').value;
-        const message = document.getElementById('contact-message').value;
-        const mailtoLink = `mailto:${portfolioData.personal.email}?subject=Message from ${encodeURIComponent(name)}&body=${encodeURIComponent(message)}%0A%0AFrom: ${encodeURIComponent(email)}`;
-        window.open(mailtoLink, '_blank', 'noopener,noreferrer');
-        e.target.reset();
-      });
-
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-          e.preventDefault();
-          const target = document.querySelector(this.getAttribute('href'));
-          if (target) target.scrollIntoView({ behavior: 'smooth' });
-        });
-      });
-    });
-  </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9ac5d4b0a6ff5833',t:'MTc2NTQ2NTAwOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9ad358279037fd33',t:'MTc2NTYwNjcwOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
